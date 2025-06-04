@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>English Premier League - Registration Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://placehold.co/32x32/000000/FFFFFF?text=PL">
+    <style>
+        /* Custom styles for side navigation to ensure smooth transitions */
+        .sidenav {
+            height: 100%;
+            width: 0; /* 0 width by default */
+            position: fixed;
+            z-index: 1000; /* High z-index to be on top */
+            top: 0;
+            left: 0;
+            background-color: #1a202c; /* Dark background */
+            overflow-x: hidden;
+            transition: 0.5s; /* Smooth transition for width */
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5); /* Subtle shadow */
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #cbd5e0; /* Light text color */
+            display: block;
+            transition: 0.3s; /* Smooth transition for hover effects */
+            border-radius: 8px; /* Rounded corners for links */
+            margin: 4px 16px; /* Margin for spacing */
+        }
+
+        .sidenav a:hover {
+            color: #ffffff; /* White on hover */
+            background-color: #2d3748; /* Slightly lighter dark background on hover */
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #cbd5e0; /* Light text color for close button */
+        }
+
+        /* Main content area transition for when sidenav opens/closes */
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        /* Styling for the custom modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+        }
+
+        .modal-content {
+            background-color: #2d3748; /* Dark background for modal */
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #4a5568;
+            width: 80%; /* Responsive width */
+            max-width: 400px; /* Max width for larger screens */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #f7fafc; /* Light text color */
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #cbd5e0;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content button {
+            background-color: #4299e1; /* Blue button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color: #3182ce; /* Darker blue on hover */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+        @media screen and (max-width: 768px) {
+            .mainbar {
+                flex-direction: column; /* Stack items vertically */
+                align-items: center; /* Center items */
+            }
+            .mainbar .logo {
+                margin-top: 10px; /* Add some space */
+            }
+            #login-search {
+                width: 100%; /* Full width for search on small screens */
+                justify-content: center; /* Center search container */
+                margin-top: 10px;
+            }
+            .search-container {
+                width: 90%; /* Adjust search input width */
+            }
+            .reg form {
+                padding: 20px; /* Adjust padding for registration form */
+            }
+            .footer-content {
+                flex-direction: column; /* Stack footer content */
+                text-align: center;
+            }
+            .footer-content .links ul {
+                padding-left: 0; /* Remove default list padding */
+            }
+            .footer-content .links ul li {
+                display: block; /* Stack list items */
+                margin-bottom: 8px;
+            }
+            .footer-content .socials {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="news.html">News</a>
+        <a href="matches.html">Matches</a>
+        <a href="TheLeague.html">The League</a>
+        <a href="HistoricRecords.html">Historic Records</a>
+        <a href="Best Goals.html">Best Goals</a>
+        <a href="market.html">Market Value</a>
+        <a href="transfers.html">Transfers</a>
+        <a href="survey.html">Survey</a>
+        <a href="stadium.html">Stadiums</a>
+        <a href="registration.html">Register</a>
+        <a href="Feedback.html">Feedback</a>
+        <a href="HallofFame.html">Hall of Fame</a>
+    </div>
+
+    <div id="main" class="flex-grow">
+        <div class="mainbar flex items-center justify-between p-4 bg-gray-800 shadow-lg rounded-b-lg">
+            <span id="menuicon" class="text-gray-300 text-3xl cursor-pointer hover:text-white transition-colors duration-300" onclick="openNav()">&#9776;</span>
+            <a class="logo flex-shrink-0" href="index.html">
+                <img width="140px" height="88px" src="https://placehold.co/140x88/000000/FFFFFF?text=Premier+League" alt="Premier League Logo">
+            </a>
+            <div id="login-search" class="flex items-center space-x-4">
+                <a id="login" href="Login.html" class="text-blue-400 hover:text-blue-300 transition-colors duration-300 text-lg font-medium flex items-center space-x-2">
+                    <span>Login</span> <i class="fa fa-fw fa-user"></i>
+                </a>
+                <div class="search-container flex items-center bg-gray-700 rounded-full px-4 py-2">
+                    <form action="#" method="get" class="flex items-center w-full">
+                        <input type="text" placeholder="Search.." name="search" class="bg-transparent text-gray-200 outline-none w-full placeholder-gray-400">
+                        <button type="submit" class="text-gray-400 hover:text-white transition-colors duration-300 ml-2">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="text-4xl font-bold text-center mt-12 mb-8 text-white">Registration Form</h1>
+
+        <div class="reg bg-gray-800 p-8 rounded-xl shadow-xl max-w-md mx-auto my-8 border border-gray-700">
+            <form id="registration-form" method="post" action="#">
+                <div class="mb-6">
+                    <label for="username" class="block text-gray-300 text-lg font-medium mb-2 sr-only">User name</label>
+                    <input type="text" id="username" name="username" placeholder="User name" class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-300 text-lg font-medium mb-2 sr-only">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600" required>
+                </div>
+
+                <div class="mb-6">
+                    <label for="phone" class="block text-gray-300 text-lg font-medium mb-2 sr-only">Phone number</label>
+                    <input type="text" id="phone" name="phone" placeholder="Phone number" class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600">
+                </div>
+
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-300 text-lg font-medium mb-2 sr-only">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-600" required>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-between space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                    <button type="button" id="registerBtn" class="w-full sm:w-1/2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                        Register
+                    </button>
+                    <button type="reset" class="w-full sm:w-1/2 bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                        Empty Form
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 p-6 mt-auto rounded-t-lg shadow-inner">
+        <div class="footer-content flex flex-col md:flex-row justify-around items-center text-center md:text-left">
+            <div class="logo mb-4 md:mb-0" id="footer-logo">
+                <a href="index.html">
+                    <img width="140px" height="88px" src="https://placehold.co/140x88/000000/FFFFFF?text=Premier+League" alt="Premier League Logo">
+                </a>
+            </div>
+            <div class="links mb-4 md:mb-0">
+                <ul class="list-none p-0 m-0 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
+                    <li><a href="index.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Home</a></li>
+                    <li><a href="HistoricRecords.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Records</a></li>
+                    <li><a href="Best Goals.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Goals</a></li>
+                    <li><a href="survey.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Survey</a></li>
+                    <li><a href="stadium.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Stadiums</a></li>
+                </ul>
+            </div>
+            <div class="socials flex space-x-4">
+                <a href="https://www.facebook.com/premierleague" id="socials-icon" class="text-gray-300 hover:text-blue-600 transition-colors duration-300 text-2xl"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/epl_premie?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" id="socials-icon" class="text-gray-300 hover:text-pink-600 transition-colors duration-300 text-2xl"><i class="fa fa-instagram"></i></a>
+                <a href="http://preml.ge/PremierLeagueYouTube" id="socials-icon" class="text-gray-300 hover:text-red-600 transition-colors duration-300 text-2xl"><i class="fa fa-youtube"></i></a>
+                <a href="twitter.com/premierleague" id="socials-icon" class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-2xl"><i class="fa fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-signature text-center text-gray-500 text-sm mt-6 pt-4 border-t border-gray-700">
+            &copy; premierleague.com | Designed by Obakeng
+        </div>
+    </footer>
+
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <button id="closeModalBtn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Side Navigation Functions ---
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        // --- Custom Modal Functions ---
+        const customModal = document.getElementById("customModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+
+        // Flag to determine if redirection should occur after modal closes
+        let shouldRedirectToLogin = false; // Changed flag name to be more specific
+
+        // Function to show the custom modal
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            customModal.style.display = "flex"; // Use flex to center content
+        }
+
+        // Function to hide the custom modal and potentially redirect
+        function hideModal() {
+            customModal.style.display = "none";
+            if (shouldRedirectToLogin) { // Check the new flag
+                // If the flag is true, redirect to the login page
+                window.location.href = 'Login.html'; // Changed redirection target
+                shouldRedirectToLogin = false; // Reset the flag
+            }
+        }
+
+        // Event listener for the modal's OK button
+        closeModalBtn.addEventListener("click", hideModal);
+
+        // --- Registration Form Logic ---
+        const registerButton = document.getElementById("registerBtn");
+
+        if (registerButton) {
+            registerButton.addEventListener("click", function(event) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                // Get form fields
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                const phone = document.getElementById("phone").value;
+                const email = document.getElementById("email").value;
+
+                // Basic validation: Check if required fields are not empty
+                if (username === "" || password === "" || email === "") {
+                    shouldRedirectToLogin = false; // Do not redirect if validation fails
+                    showModal("Input Required", "Please fill in all required fields (Username, Password, Email).");
+                } else {
+                    // In a real application, you would send this data to a server
+                    // for registration. For this example, we'll just show the success message.
+                    shouldRedirectToLogin = true; // Set flag to redirect on success
+                    showModal("Registration Status", "Registration Complete!");
+
+                    // Optionally clear the form fields after successful registration
+                    document.getElementById("registration-form").reset();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

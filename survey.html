@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Best Player Survey In Premier League</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://placehold.co/32x32/000000/FFFFFF?text=PL">
+    <style>
+        /* Custom styles for side navigation to ensure smooth transitions */
+        .sidenav {
+            height: 100%;
+            width: 0; /* 0 width by default */
+            position: fixed;
+            z-index: 1000; /* High z-index to be on top */
+            top: 0;
+            left: 0;
+            background-color: #1a202c; /* Dark background */
+            overflow-x: hidden;
+            transition: 0.5s; /* Smooth transition for width */
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5); /* Subtle shadow */
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #cbd5e0; /* Light text color */
+            display: block;
+            transition: 0.3s; /* Smooth transition for hover effects */
+            border-radius: 8px; /* Rounded corners for links */
+            margin: 4px 16px; /* Margin for spacing */
+        }
+
+        .sidenav a:hover {
+            color: #ffffff; /* White on hover */
+            background-color: #2d3748; /* Slightly lighter dark background on hover */
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #cbd5e0; /* Light text color for close button */
+        }
+
+        /* Main content area transition for when sidenav opens/closes */
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+        /* Styling for the custom modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+        }
+
+        .modal-content {
+            background-color: #2d3748; /* Dark background for modal */
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #4a5568;
+            width: 80%; /* Responsive width */
+            max-width: 400px; /* Max width for larger screens */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #f7fafc; /* Light text color */
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #cbd5e0;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content button {
+            background-color: #4299e1; /* Blue button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color: #3182ce; /* Darker blue on hover */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+        @media screen and (max-width: 768px) {
+            .mainbar {
+                flex-direction: column; /* Stack items vertically */
+                align-items: center; /* Center items */
+            }
+            .mainbar .logo {
+                margin-top: 10px; /* Add some space */
+            }
+            #login-search {
+                width: 100%; /* Full width for search on small screens */
+                justify-content: center; /* Center search container */
+                margin-top: 10px;
+            }
+            .search-container {
+                width: 90%; /* Adjust search input width */
+            }
+            .survey-form-section {
+                padding: 20px; /* Adjust padding for survey sections */
+            }
+            .footer-content {
+                flex-direction: column; /* Stack footer content */
+                text-align: center;
+            }
+            .footer-content .links ul {
+                padding-left: 0; /* Remove default list padding */
+            }
+            .footer-content .links ul li {
+                display: block; /* Stack list items */
+                margin-bottom: 8px;
+            }
+            .footer-content .socials {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="news.html">News</a>
+        <a href="matches.html">Matches</a>
+        <a href="TheLeague.html">The League</a>
+        <a href="HistoricRecords.html">Historic Records</a>
+        <a href="Best Goals.html">Best Goals</a>
+        <a href="market.html">Market Value</a>
+        <a href="transfers.html">Transfers</a>
+        <a href="survey.html">Survey</a>
+        <a href="stadium.html">Stadiums</a>
+        <a href="registration.html">Register</a>
+        <a href="Feedback.html">Feedback</a>
+        <a href="HallofFame.html">Hall of Fame</a>
+    </div>
+
+    <div id="main" class="flex-grow">
+        <div class="mainbar flex items-center justify-between p-4 bg-gray-800 shadow-lg rounded-b-lg">
+            <span id="menuicon" class="text-gray-300 text-3xl cursor-pointer hover:text-white transition-colors duration-300" onclick="openNav()">&#9776;</span>
+            <a class="logo flex-shrink-0" href="index.html">
+                <img width="140px" height="88px" src="https://placehold.co/140x88/000000/FFFFFF?text=Premier+League" alt="Premier League Logo">
+            </a>
+            <div id="login-search" class="flex items-center space-x-4">
+                <a id="login" href="Login.html" class="text-blue-400 hover:text-blue-300 transition-colors duration-300 text-lg font-medium flex items-center space-x-2">
+                    <span>Login</span> <i class="fa fa-fw fa-user"></i>
+                </a>
+                <div class="search-container flex items-center bg-gray-700 rounded-full px-4 py-2">
+                    <form action="#" method="get" class="flex items-center w-full">
+                        <input type="text" placeholder="Search.." name="search" class="bg-transparent text-gray-200 outline-none w-full placeholder-gray-400">
+                        <button type="submit" class="text-gray-400 hover:text-white transition-colors duration-300 ml-2">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="text-4xl font-bold text-center mt-12 mb-8 text-white">Premier League Fan Survey</h1>
+
+        <div class="all bg-gray-800 p-8 rounded-xl shadow-xl max-w-2xl mx-auto my-8 border border-gray-700">
+            <form id="survey-form" action="#" method="post">
+                <div id="survey-section-1" class="survey-form-section">
+                    <h2 class="text-2xl font-semibold text-white mb-6">Player & Team Preferences</h2>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">1. Who is the best player in the Premier League currently?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q1_best_player" value="Mohamed Salah" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Mohamed Salah</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q1_best_player" value="Erling Haaland" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Erling Haaland</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q1_best_player" value="Kevin De Bruyne" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Kevin De Bruyne</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q1_best_player" value="Bukayo Saka" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Bukayo Saka</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">2. Which team do you think will win the Premier League next season?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q2_next_winner" value="Manchester City" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Manchester City</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q2_next_winner" value="Arsenal" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Arsenal</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q2_next_winner" value="Liverpool" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Liverpool</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q2_next_winner" value="Manchester United" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Manchester United</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">3. Who is the best goalkeeper in the Premier League?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q3_best_gk" value="Alisson Becker" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Alisson Becker</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q3_best_gk" value="Ederson" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Ederson</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q3_best_gk" value="Andre Onana" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Andre Onana</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q3_best_gk" value="Guglielmo Vicario" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Guglielmo Vicario</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="survey-section-2" class="survey-form-section hidden">
+                    <h2 class="text-2xl font-semibold text-white mb-6">Matchday & Fan Experience</h2>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">4. What is your favorite aspect of watching a Premier League match?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q4_favorite_aspect" value="Goals & Excitement" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Goals & Excitement</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q4_favorite_aspect" value="Tactical Battles" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Tactical Battles</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q4_favorite_aspect" value="Atmosphere & Chants" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Atmosphere & Chants</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q4_favorite_aspect" value="Player Performances" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Player Performances</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">5. How often do you watch Premier League matches?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q5_watch_frequency" value="Every Matchday" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Every Matchday</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q5_watch_frequency" value="Most Matches" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Most Matches</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q5_watch_frequency" value="Occasionally" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Occasionally</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q5_watch_frequency" value="Rarely" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Rarely</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">6. What is your preferred way to follow Premier League news?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q6_news_source" value="Official Premier League Website/App" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Official Premier League Website/App</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q6_news_source" value="Sports News Websites" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Sports News Websites</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q6_news_source" value="Social Media" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Social Media</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q6_news_source" value="TV Broadcasts/Highlights" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">TV Broadcasts/Highlights</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="survey-section-3" class="survey-form-section hidden">
+                    <h2 class="text-2xl font-semibold text-white mb-6">Historical & Future Outlook</h2>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">7. Which Premier League season do you consider the most iconic?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q7_iconic_season" value="1998-99 (Man Utd Treble)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">1998-99 (Man Utd Treble)</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q7_iconic_season" value="2003-04 (Arsenal Invincibles)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">2003-04 (Arsenal Invincibles)</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q7_iconic_season" value="2011-12 (Aguerooooo!)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">2011-12 (Aguerooooo!)</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q7_iconic_season" value="2015-16 (Leicester City)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">2015-16 (Leicester City)</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">8. What is the most memorable Premier League goal you've ever seen?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q8_memorable_goal" value="Aguero vs QPR (2012)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Aguero vs QPR (2012)</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q8_memorable_goal" value="Rooney vs Man City (2011)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Rooney vs Man City (2011)</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q8_memorable_goal" value="Henry vs Man Utd (2000)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Henry vs Man Utd (2000)</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q8_memorable_goal" value="Bergkamp vs Newcastle (2002)" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Bergkamp vs Newcastle (2002)</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">9. What new technology or rule change would you like to see in the PL?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q9_new_tech_rule" value="Improved VAR Transparency" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Improved VAR Transparency</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q9_new_tech_rule" value="Sin Bins for Yellow Cards" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Sin Bins for Yellow Cards</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q9_new_tech_rule" value="Fan Voting on MOTM" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Fan Voting on MOTM</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q9_new_tech_rule" value="Automated Offside" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Automated Offside</span></label>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-300 text-lg mb-3">10. How likely are you to recommend following the Premier League to a friend?</p>
+                        <div class="space-y-2">
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q10_recommend_pl" value="Very Likely" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Very Likely</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q10_recommend_pl" value="Likely" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Likely</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q10_recommend_pl" value="Neutral" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Neutral</span></label><br>
+                            <label class="inline-flex items-center text-gray-300"><input type="radio" name="q10_recommend_pl" value="Unlikely" class="form-radio text-blue-500 h-4 w-4 rounded-full"> <span class="ml-2">Unlikely</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-8">
+                    <button type="button" id="prevBtn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hidden">
+                        Previous
+                    </button>
+                    <button type="button" id="nextBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                        Next
+                    </button>
+                    <button type="button" id="voteBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hidden">
+                        Vote!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 p-6 mt-auto rounded-t-lg shadow-inner">
+        <div class="footer-content flex flex-col md:flex-row justify-around items-center text-center md:text-left">
+            <div class="logo mb-4 md:mb-0" id="footer-logo">
+                <a href="index.html">
+                    <img width="140px" height="88px" src="https://placehold.co/140x88/000000/FFFFFF?text=Premier+League" alt="Premier League Logo">
+                </a>
+            </div>
+            <div class="links mb-4 md:mb-0">
+                <ul class="list-none p-0 m-0 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
+                    <li><a href="index.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Home</a></li>
+                    <li><a href="HistoricRecords.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Records</a></li>
+                    <li><a href="Best Goals.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Goals</a></li>
+                    <li><a href="survey.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Survey</a></li>
+                    <li><a href="stadium.html" class="list text-gray-300 hover:text-white transition-colors duration-300">Stadiums</a></li>
+                </ul>
+            </div>
+            <div class="socials flex space-x-4">
+                <a href="https://www.facebook.com/premierleague" id="socials-icon" class="text-gray-300 hover:text-blue-600 transition-colors duration-300 text-2xl"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/epl_premie?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" id="socials-icon" class="text-gray-300 hover:text-pink-600 transition-colors duration-300 text-2xl"><i class="fa fa-instagram"></i></a>
+                <a href="http://preml.ge/PremierLeagueYouTube" id="socials-icon" class="text-gray-300 hover:text-red-600 transition-colors duration-300 text-2xl"><i class="fa fa-youtube"></i></a>
+                <a href="twitter.com/premierleague" id="socials-icon" class="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-2xl"><i class="fa fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-signature text-center text-gray-500 text-sm mt-6 pt-4 border-t border-gray-700">
+            &copy; premierleague.com | Designed by Obakeng
+        </div>
+    </footer>
+
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalMessage"></p>
+            <button id="closeModalBtn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Side Navigation Functions ---
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        // --- Custom Modal Functions ---
+        const customModal = document.getElementById("customModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+
+        // Function to show the custom modal
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            customModal.style.display = "flex"; // Use flex to center content
+        }
+
+        // Function to hide the custom modal
+        function hideModal() {
+            customModal.style.display = "none";
+        }
+
+        // Event listener for the modal's OK button
+        closeModalBtn.addEventListener("click", hideModal);
+
+        // --- Survey Paging Logic ---
+        const surveySections = document.querySelectorAll('.survey-form-section');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const voteBtn = document.getElementById('voteBtn');
+        let currentSectionIndex = 0;
+
+        // Function to display the current survey section and update button visibility
+        function showSurveySection(index) {
+            surveySections.forEach((section, i) => {
+                section.classList.add('hidden'); // Hide all sections
+            });
+            surveySections[index].classList.remove('hidden'); // Show the current section
+
+            // Update button visibility
+            prevBtn.classList.toggle('hidden', index === 0); // Hide 'Previous' on first section
+            nextBtn.classList.toggle('hidden', index === surveySections.length - 1); // Hide 'Next' on last section
+            voteBtn.classList.toggle('hidden', index !== surveySections.length - 1); // Show 'Vote!' only on last section
+        }
+
+        // Function to validate questions on the current page
+        function validateCurrentSection() {
+            const currentSection = surveySections[currentSectionIndex];
+            const radioGroups = currentSection.querySelectorAll('input[type="radio"]');
+            const questionNames = new Set();
+            radioGroups.forEach(radio => questionNames.add(radio.name));
+
+            let allAnswered = true;
+            questionNames.forEach(name => {
+                const answered = currentSection.querySelector(`input[name="${name}"]:checked`);
+                if (!answered) {
+                    allAnswered = false;
+                }
+            });
+            return allAnswered;
+        }
+
+        // Function to validate ALL questions across all sections
+        function validateAllQuestions() {
+            let allQuestionsAnswered = true;
+            surveySections.forEach(section => {
+                const radioGroups = section.querySelectorAll('input[type="radio"]');
+                const questionNames = new Set();
+                radioGroups.forEach(radio => questionNames.add(radio.name));
+
+                questionNames.forEach(name => {
+                    const answered = section.querySelector(`input[name="${name}"]:checked`);
+                    if (!answered) {
+                        allQuestionsAnswered = false;
+                    }
+                });
+            });
+            return allQuestionsAnswered;
+        }
+
+        // Event listener for Next button
+        nextBtn.addEventListener('click', () => {
+            if (validateCurrentSection()) {
+                currentSectionIndex++;
+                showSurveySection(currentSectionIndex);
+            } else {
+                showModal("Missing Information", "Please answer all questions on the current page before proceeding.");
+            }
+        });
+
+        // Event listener for Previous button
+        prevBtn.addEventListener('click', () => {
+            currentSectionIndex--;
+            showSurveySection(currentSectionIndex);
+        });
+
+        // Event listener for Vote button (final submission)
+        voteBtn.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent form submission
+
+            if (validateAllQuestions()) {
+                showModal("Survey Complete!", "Thank you for completing the survey!");
+                // In a real application, you would collect and send the survey data here.
+                // Example: const formData = new FormData(document.getElementById('survey-form'));
+                // fetch('/submit-survey', { method: 'POST', body: formData });
+
+                // Optionally, reset the form after successful submission
+                document.getElementById('survey-form').reset();
+                currentSectionIndex = 0; // Go back to the first page
+                showSurveySection(currentSectionIndex);
+            } else {
+                showModal("Missing Information", "Please answer all questions before submitting the survey.");
+            }
+        });
+
+        // Initialize the first section on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            showSurveySection(currentSectionIndex);
+        });
+    </script>
+</body>
+</html>
